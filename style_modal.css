@@ -1,0 +1,416 @@
+/*
+Theme Name:     Bulky Garbage (Twenty Nineteen)
+Theme URI:      http: //example.com/
+Description:    環境局・安佐南工場　大型ゴミ搬入予約システム
+Author:         INOUE Tomoo
+Author URI:     http://www.cd.info.hiroshima-cu.ac.jp/~tomoo/
+Template:       twentynineteen
+Version:        1.0.1
+*/
+
+
+/*------------------------------
+
+ここからモーダルウィンドウのCSS
+
+------------------------------*/
+
+.content{
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.modal-window{
+    height: 100vh;
+    width: 100vh;
+    position: fixed;
+    display: none;
+    top: 0;
+}
+
+/*
+.modal-bg{
+    background: green;/*rgba(0,0,0,0.8);
+    height: 100vh;
+    float: right;
+    width: 100%;
+    color: #00f;
+    text-decoration: underline;
+}
+*/
+
+/* モーダル 背景エリア */
+.modal-bg.modal-close{
+
+  width:200%;
+  height:120%;
+  display:block;
+  background: rgba(0,0,0,0.5);
+
+}
+
+
+/*------------------------------
+
+ここまでモーダルウィンドウのCSS
+
+------------------------------*/
+
+/*------------------------------
+
+ここからアコーディオンのCSS
+
+------------------------------*/
+/*
+. クラス属性
+# id属性
+  要素名
+*/
+
+/*overflow: hidden;*//* はみ出た部分の処理 （使えるかも）*/
+
+.modal-contents.garbage-list {
+  /* height: 75vw; */
+  height:75%;
+  display: flex;
+  background-color: #7f7f7f;
+  position: fixed;
+  width: 80%;
+  left: 10%;
+  right:10%;
+  top: 50%;
+  transform: translate(0%,-50%);
+}
+
+.modal-area{
+  display:block;
+}
+.garbage-division-area{
+  background-color: white;
+  border: 2px solid #272121;
+  width:70%;
+}
+
+.garbage-group{
+  height:20%;
+  border-bottom: 2px solid #272121;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+}
+.garbage-group label{
+  color: rgb(0, 0, 0);
+  background: #acf;
+  border: solid 0.5px rgb(255,255,255);
+  border-radius:10px 10px 10px 10px; /*角を丸くする設定*/
+
+  font-size: 1vw;
+  text-align: center;
+  display: inline;
+  position: relative;/* 変更部分 */
+
+  cursor: pointer;
+  padding: 5px 0px;
+  margin: 5px 0px;
+  font-weight: 600;
+}
+
+.garbage-group label:hover{
+  cursor:pointer;
+  color:#acf;
+  background: rgb(255,255,255);
+}
+.garbage-group input{
+  display: none;
+}
+
+.garbage-item{
+  font-size: 1vw;
+  text-align: center;
+  vertical-align : top;
+  height:60%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4,1fr);
+  /* grid-template-rows: repeat(4, 50%);
+  background: #9797e2;
+  overflow: auto; /*はみ出たものはscroll表示になる． scrollにしていたとき一度表記がおかしくなったのでautoに*/
+  padding: 3px;
+}
+
+.garbage-item label{
+  color: rgb(0, 0, 0);
+  background: rgb(255, 255, 255);
+  border: solid 0.5px #acf;
+  display: inline;
+  text-align: center;
+  vertical-align : top;
+  cursor: pointer;
+  padding: 5px 0px;
+  margin: 5px 0px;
+  font-weight: 600;
+  border-radius:10px 10px 10px 10px; /*角を丸くする設定*/
+}
+
+.garbage-item label:hover{
+  cursor:pointer;
+  color:#acf;
+
+  /*↓薄くするときの設定*/
+  opacity:0.3;
+  filter:alpha(opacity= 30);
+  -ms-filter: “alpha( opacity= 30 )”;
+}
+
+.garbage-item input{
+  display: none;
+}
+
+.list_name{
+  text-align: center;
+  border: 1px solid rgb(0, 0, 0);
+  margin: 0px 5px;
+}
+.garbage-mouseover{
+  background-color: white;
+}
+
+.garbage-send-area{
+  text-align: center;
+}
+
+/*  garbage-picked-area */
+.garbage-picked{
+
+  width: 30%;
+  max-height: 100%;
+  overflow: auto; /*ã¯ã¿å‡ºãŸã‚‚ã®ã¯scrollè¡¨ç¤ºã«ãªã‚‹ï¼Ž scrollã«ã—ã¦ã„ãŸã¨ãä¸€åº¦è¡¨è¨˜ãŒãŠã‹ã—ããªã£ãŸã®ã§autoã«*/
+  border: 2px solid #272121;
+  box-sizing:border-box;
+  background: #acf;
+}
+
+.garbage-picked li{
+  margin-left:-5px;
+  margin: 1 ;
+  padding: 0;
+  border: 1px solid #270909;
+}
+
+.garbage-picked img{
+  /*margin:3vw;*/
+  width:  0vw;
+  height: 0vw;
+}
+
+.garbage-picked ul{
+  list-style: none;
+  font-size: 50%;
+  margin-left: -20px;
+}
+
+.garbage-picked p{
+  margin-left:1vw;
+  margin-bottom: 1vw
+  font-size: 1.5vw;
+  font-weight: 700;
+}
+
+.list_name{
+  text-align: center;
+  font-size: 1vw;
+  position: sticky;
+  top:0;
+  font-weight: 700;
+  background: #acf;
+  margin: auto;
+}
+
+
+.garbage-mouseover{
+  background-color: white;
+  border-top: 2px solid #272121;
+  height: 20%;
+}
+
+.garbage-send-area{
+  text-align: center;
+  top:80%;
+}
+
+li#garbage-mouseover-name{
+  font-size: 2vw;
+  font-weight: 700;
+}
+
+li#garbage-mouseover-category{
+  font-size: 2vw;
+}
+
+li#garbage-mouseover-condition{
+  font-size: 2vw;
+}
+
+
+img{
+  height: auto;
+  max-width: 100%;
+}
+
+button{
+  min-width: initial;
+  /* text-align: center; */
+  padding: 1vw 1vw;
+  margin-left: 2%;
+  margin-bottom: 2%;
+  background: #00b9eb;
+}
+
+button:hover{
+  background: #00b9eb;
+  /*↓薄くするときの設定*/
+  opacity:0.3;
+  filter:alpha(opacity= 30);
+  -ms-filter: “alpha( opacity= 30 )”;
+}
+
+input.send-button.modal-close {
+  top: 90%;
+  left: 45%;
+  position: fixed;
+  min-width: initial;
+  padding: 1vw 1vw;
+  background: #00b9eb;
+}
+
+input:hover.send-button.modal-close {
+  background: #00b9eb;
+  /*↓薄くするときの設定*/
+  opacity:0.3;
+  filter:alpha(opacity= 30);
+  -ms-filter: “alpha( opacity= 30 )”;
+}
+
+
+
+
+
+@media all and (max-width: 1100px){
+  .garbage-item{
+    font-size: 1vw;
+    text-align: center;
+    vertical-align : top;
+    height:60%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4,1fr);
+    background: #acf;
+    overflow: auto; /*はみ出たものはscroll表示になる． scrollにしていたとき一度表記がおかしくなったのでautoに*/
+    padding: 3px;
+  }
+}
+
+@media all and (max-width: 800px){
+  .garbage-group {
+    height: 20%;
+    border-bottom: 2px solid #272121;
+    /* text-align: center; */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .garbage-item{
+    font-size: 1vw;
+    text-align: center;
+    vertical-align : top;
+    height:60%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4,1fr);
+    background: #acf;
+    overflow: auto; /*はみ出たものはscroll表示になる． scrollにしていたとき一度表記がおかしくなったのでautoに*/
+    padding: 3px;
+  }
+}
+
+@media all and (max-width: 450px){
+  .garbage-group {
+    height: 20%;
+    border-bottom: 2px solid #272121;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .garbage-item{
+    font-size: 1vw;
+    text-align: center;
+    vertical-align : top;
+    height:60%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4,1fr);
+    background: #acf;
+    overflow: auto; /*はみ出たものはscroll表示になる． scrollにしていたとき一度表記がおかしくなったのでautoに*/
+    padding: 3px;
+  }
+}
+
+@media all and (min-width: 1100px){
+  .garbage-group {
+    height: 20%;
+    border-bottom: 2px solid #272121;
+    /* text-align: center; */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .garbage-item{
+    font-size: 1vw;
+    text-align: center;
+    vertical-align : top;
+    height:60%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4,1fr);
+    background: #acf;
+    overflow: auto; /*はみ出たものはscroll表示になる． scrollにしていたとき一度表記がおかしくなったのでautoに*/
+    padding: 3px;
+  }
+}
+
+/*------------------------------
+
+ここまでアコーディオンのCSS
+
+------------------------------*/
+
+
+/*
+.entry-content h4 {
+	font-family: sans-serif;
+}
+*/
+
+/*
+.site-header {
+	position: relative;
+}
+*/
+
+/*
+.site-branding {
+	position: relative;
+}
+
+.menu-toggle {
+	z-index: 2;
+}
+
+.header-image {
+	position: absolute;
+	right: 20%;
+	bottom: 15%;
+	opacity: 0.50;
+	z-index: 0;
+}
+*/
